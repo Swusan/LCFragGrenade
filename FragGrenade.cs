@@ -1,11 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Dissonance;
-using DunGen;
-using GameNetcodeStuff;
-using Mono.Security.X509;
+﻿using GameNetcodeStuff;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace LethalFragGrenade;
 
@@ -34,44 +28,44 @@ public override void ItemActivate(bool used, bool buttonDown = true)
 {
    base.ItemActivate(used, buttonDown);
    Plugin.TheLogger.LogInfo("Grenade Activated");
-   this.playerThrownBy = playerHeldBy;
-   if (base.IsOwner)
+   playerThrownBy = playerHeldBy;
+   if (IsOwner)
    {
-       this.playerHeldBy.DiscardHeldObject(true, null, this.GetGrenadeThrowDestination(), true);
+       playerHeldBy.DiscardHeldObject(true, null, GetGrenadeThrowDestination());
    }
 }
 
 
 public override void EquipItem()
 {
-   this.SetControlTipForGrenade();
-   base.EnableItemMeshes(true);
-   this.isPocketed = false;
+   SetControlTipForGrenade();
+   EnableItemMeshes(true);
+   isPocketed = false;
 }
 
 
 private void SetControlTipForGrenade()
 {
     string[] allLines;
-        allLines = new string[]
+        allLines = new[]
         {
             "Throw grenade: [RMB]"
         };
-    if (base.IsOwner)
+    if (IsOwner)
     {
-        HUDManager.Instance.ChangeControlTipMultiple(allLines, true, this.itemProperties);
+        HUDManager.Instance.ChangeControlTipMultiple(allLines, true, itemProperties);
     }
 }
 
 public override void Update()
 {
    base.Update();
-   if (!this.hasExploded && playerThrownBy is not null)
+   if (!hasExploded && playerThrownBy is not null)
    {
-       this.explodeTimer += Time.deltaTime;
-       if (this.explodeTimer > this.fuse)
+       explodeTimer += Time.deltaTime;
+       if (explodeTimer > fuse)
        {
-           this.ExplodeFragGrenade(this.DestroyGrenade);
+           ExplodeFragGrenade(DestroyGrenade);
        }
    }
 }
@@ -79,79 +73,63 @@ public override void Update()
 
 public override void FallWithCurve()
 {
-   float magnitude = (this.startFallingPosition - this.targetFloorPosition).magnitude;
-   base.transform.rotation = Quaternion.Lerp(base.transform.rotation, Quaternion.Euler(this.itemProperties.restingRotation.x, base.transform.eulerAngles.y, this.itemProperties.restingRotation.z), 14f * Time.deltaTime / magnitude);
-   base.transform.localPosition = Vector3.Lerp(this.startFallingPosition, this.targetFloorPosition, this.grenadeFallCurve.Evaluate(this.fallTime));
+   float magnitude = (startFallingPosition - targetFloorPosition).magnitude;
+   transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(itemProperties.restingRotation.x, transform.eulerAngles.y, itemProperties.restingRotation.z), 14f * Time.deltaTime / magnitude);
+   transform.localPosition = Vector3.Lerp(startFallingPosition, targetFloorPosition, grenadeFallCurve.Evaluate(fallTime));
    if (magnitude > 5f)
    {
-       base.transform.localPosition = Vector3.Lerp(new Vector3(base.transform.localPosition.x, this.startFallingPosition.y, base.transform.localPosition.z), new Vector3(base.transform.localPosition.x, this.targetFloorPosition.y, base.transform.localPosition.z), this.grenadeVerticalFallCurveNoBounce.Evaluate(this.fallTime));
+       transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, startFallingPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, targetFloorPosition.y, transform.localPosition.z), grenadeVerticalFallCurveNoBounce.Evaluate(fallTime));
    }
    else
    {
-       base.transform.localPosition = Vector3.Lerp(new Vector3(base.transform.localPosition.x, this.startFallingPosition.y, base.transform.localPosition.z), new Vector3(base.transform.localPosition.x, this.targetFloorPosition.y, base.transform.localPosition.z), this.grenadeVerticalFallCurve.Evaluate(this.fallTime));
+       transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, startFallingPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, targetFloorPosition.y, transform.localPosition.z), grenadeVerticalFallCurve.Evaluate(fallTime));
    }
-   this.fallTime += Mathf.Abs(Time.deltaTime * 12f / magnitude);
+   fallTime += Mathf.Abs(Time.deltaTime * 12f / magnitude);
 }
 
 
 private void ExplodeFragGrenade(bool destroy = false)
 {
-   if (this.hasExploded)
+   if (hasExploded)
    {
        return;
    }
-   this.hasExploded = true;
+   hasExploded = true;
    // this.itemAudio.PlayOneShot(this.explodeSFX);
    // WalkieTalkie.TransmitOneShotAudio(this.itemAudio, this.explodeSFX, 1f);
-   Landmine.SpawnExplosion(base.transform.position, true);
+   Landmine.SpawnExplosion(transform.position, true, 100f, 110f);
    DestroyGrenade = true;
-   if (this.DestroyGrenade)
+   if (DestroyGrenade)
    {
-       this.DestroyObjectInHand(this.playerThrownBy);
+       DestroyObjectInHand(playerThrownBy);
    }
 }
 
 
 public Vector3 GetGrenadeThrowDestination()
 {
-   if (playerHeldBy is null)
+   Vector3 vector = transform.position;
+   Debug.DrawRay(playerHeldBy.gameplayCamera.transform.position, playerHeldBy.gameplayCamera.transform.forward, Color.yellow, 15f);
+   grenadeThrowRay = new Ray(playerHeldBy.gameplayCamera.transform.position, playerHeldBy.gameplayCamera.transform.forward);
+   if (Physics.Raycast(grenadeThrowRay, out grenadeHit, 12f, StartOfRound.Instance.collidersAndRoomMaskAndDefault))
    {
-       Plugin.TheLogger.LogInfo("Finn's Fault");
+       vector = grenadeThrowRay.GetPoint(grenadeHit.distance - 0.05f);
    }
    else
    {
-       Plugin.TheLogger.LogInfo("Gavin's Fault");
+       vector = grenadeThrowRay.GetPoint(10f);
    }
-   Plugin.TheLogger.LogInfo("test0");
-   Vector3 vector = base.transform.position;
-   Debug.DrawRay(playerHeldBy.gameplayCamera.transform.position, this.playerHeldBy.gameplayCamera.transform.forward, Color.yellow, 15f);
-   Plugin.TheLogger.LogInfo("test1");
-   this.grenadeThrowRay = new Ray(this.playerHeldBy.gameplayCamera.transform.position, this.playerHeldBy.gameplayCamera.transform.forward);
-   Plugin.TheLogger.LogInfo("test2");
-   if (Physics.Raycast(this.grenadeThrowRay, out this.grenadeHit, 12f, StartOfRound.Instance.collidersAndRoomMaskAndDefault))
-   {
-       vector = this.grenadeThrowRay.GetPoint(this.grenadeHit.distance - 0.05f);
-   }
-   else
-   {
-       vector = this.grenadeThrowRay.GetPoint(10f);
-   }
-   Plugin.TheLogger.LogInfo("test3");
    Debug.DrawRay(vector, Vector3.down, Color.blue, 15f);
-   Plugin.TheLogger.LogInfo("test4");
-   this.grenadeThrowRay = new Ray(vector, Vector3.down);
-   Plugin.TheLogger.LogInfo("test5");
+   grenadeThrowRay = new Ray(vector, Vector3.down);
    Vector3 result;
-   Plugin.TheLogger.LogInfo("test6");
-   if (Physics.Raycast(this.grenadeThrowRay, out this.grenadeHit, 30f, StartOfRound.Instance.collidersAndRoomMaskAndDefault))
+   if (Physics.Raycast(grenadeThrowRay, out grenadeHit, 30f, StartOfRound.Instance.collidersAndRoomMaskAndDefault))
    {
-       result = this.grenadeHit.point + Vector3.up * 0.05f;
+       result = grenadeHit.point + Vector3.up * 0.05f;
    }
    else
    {
-       result = this.grenadeThrowRay.GetPoint(30f);
+       result = grenadeThrowRay.GetPoint(30f);
    }
-   Plugin.TheLogger.LogInfo("test7");
    return result;
 }
 
