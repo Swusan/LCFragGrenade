@@ -4,7 +4,6 @@
 
 Still Need to Do:
 - Smoother and Faster Travel Animation
-- Implement new Grenade model
 - Sound Design
 
 Might Do:
