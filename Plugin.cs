@@ -2,6 +2,8 @@
 using BepInEx;
 using BepInEx.Logging;
 using LethalLib.Modules;
+using Unity.Netcode.Components;
+using Unity.Netcode.Samples;
 using UnityEngine;
 
 namespace LethalFragGrenade
@@ -11,10 +13,12 @@ namespace LethalFragGrenade
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource TheLogger;
+        public static Plugin instance;
         private void Awake()
         {
+            instance = this;
             TheLogger = Logger;
-            // Keyfram
+            // Keyframe
             Keyframe[] ks = new Keyframe[2];
             ks[0] = new Keyframe(0, 0);
             ks[1] = new Keyframe(1, 1);
@@ -25,14 +29,22 @@ namespace LethalFragGrenade
             Logger.LogInfo("Asset Bundle Loaded");
             Item grenade = bundle.LoadAsset<Item>("GrenadeItem");
             Logger.LogInfo("Item Loaded");
-            FragGrenade fg = grenade.spawnPrefab.AddComponent<FragGrenade>();
+            
+            var fg = grenade.spawnPrefab.AddComponent<FragGrenade>();
+            fg.itemProperties = grenade;
+            fg.grabbable = true;
+            fg.grabbableToEnemies = false;
             fg.grenadeFallCurve = new AnimationCurve(ks);
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks);
             fg.grenadeVerticalFallCurveNoBounce = new AnimationCurve(ks);
-            fg.itemProperties = grenade;
+            
             NetworkPrefabs.RegisterNetworkPrefab(grenade.spawnPrefab);
+            TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
+            node.clearPreviousText = true;
+            node.displayText = "Boom.";
+            
             Logger.LogInfo("Prefab Prefabed");
-            Items.RegisterShopItem(grenade, 100);
+            Items.RegisterShopItem(grenade, (TerminalNode)null, (TerminalNode)null, node, 100);
             Logger.LogInfo("Shop Shopped");
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             
