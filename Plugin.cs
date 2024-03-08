@@ -40,8 +40,6 @@ namespace LethalFragGrenade
             
             NetworkPrefabs.RegisterNetworkPrefab(grenade.spawnPrefab);
             TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
-            node.clearPreviousText = true;
-            node.displayText = "Boom.";
             
             Logger.LogInfo("Prefab Prefabed");
             Items.RegisterShopItem(grenade, (TerminalNode)null, (TerminalNode)null, node, 100);

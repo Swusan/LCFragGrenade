@@ -95,8 +95,6 @@ private void ExplodeFragGrenade(bool destroy = false)
        return;
    }
    hasExploded = true;
-   // this.itemAudio.PlayOneShot(this.explodeSFX);
-   // WalkieTalkie.TransmitOneShotAudio(this.itemAudio, this.explodeSFX, 1f);
    Landmine.SpawnExplosion(transform.position, true, 100f, 110f);
    DestroyGrenade = true;
    if (DestroyGrenade)

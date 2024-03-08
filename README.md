@@ -3,6 +3,8 @@
  Functional but not complete
 
 Still Need to Do:
+- RPC Stuff
+- Grenade PNG
 - Smoother and Faster Travel Animation
 - Sound Design
 
