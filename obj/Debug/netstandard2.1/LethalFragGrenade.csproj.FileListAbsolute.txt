@@ -1,0 +1,11 @@
+C:\Users\bmore\Documents\LethalFragGrenade\bin\Debug\netstandard2.1\LethalFragGrenade.deps.json
+C:\Users\bmore\Documents\LethalFragGrenade\bin\Debug\netstandard2.1\LethalFragGrenade.dll
+C:\Users\bmore\Documents\LethalFragGrenade\bin\Debug\netstandard2.1\LethalFragGrenade.pdb
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.csproj.AssemblyReference.cache
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\PluginInfo.cs
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.AssemblyInfoInputs.cache
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.AssemblyInfo.cs
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.csproj.CoreCompileInputs.cache
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.dll
+C:\Users\bmore\Documents\LethalFragGrenade\obj\Debug\netstandard2.1\LethalFragGrenade.pdb
