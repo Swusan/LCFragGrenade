@@ -34,7 +34,7 @@ public override void ItemActivate(bool used, bool buttonDown = true)
 {
    base.ItemActivate(used, buttonDown);
    Plugin.TheLogger.LogInfo("Grenade Activated");
-   playerThrownBy = playerHeldBy;
+   this.playerThrownBy = playerHeldBy;
    if (base.IsOwner)
    {
        this.playerHeldBy.DiscardHeldObject(true, null, this.GetGrenadeThrowDestination(), true);
@@ -44,35 +44,24 @@ public override void ItemActivate(bool used, bool buttonDown = true)
 
 public override void EquipItem()
 {
-   //this.SetControlTipForGrenade();
+   this.SetControlTipForGrenade();
    base.EnableItemMeshes(true);
    this.isPocketed = false;
 }
 
 
-// private void SetControlTipForGrenade()
-// {
-//     string[] allLines;
-//     if (this.pinPulled)
-//     {
-//         allLines = new string[]
-//         {
-//             "Throw grenade: [RMB]"
-//         };
-//     }
-//     else
-//     {
-//         allLines = new string[]
-//         {
-//             "Pull pin: [RMB]"
-//         };
-//     }
-//     if (base.IsOwner)
-//     {
-//         HUDManager.Instance.ChangeControlTipMultiple(allLines, true, this.itemProperties);
-//     }
-// }
-
+private void SetControlTipForGrenade()
+{
+    string[] allLines;
+        allLines = new string[]
+        {
+            "Throw grenade: [RMB]"
+        };
+    if (base.IsOwner)
+    {
+        HUDManager.Instance.ChangeControlTipMultiple(allLines, true, this.itemProperties);
+    }
+}
 
 public override void Update()
 {
