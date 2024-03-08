@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\LethalFragGrenade.csproj": {}
+    "C:\\Users\\bmore\\Documents\\LCFragGrenade\\LethalFragGrenade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\LethalFragGrenade.csproj": {
+    "C:\\Users\\bmore\\Documents\\LCFragGrenade\\LethalFragGrenade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\LethalFragGrenade.csproj",
+        "projectUniqueName": "C:\\Users\\bmore\\Documents\\LCFragGrenade\\LethalFragGrenade.csproj",
         "projectName": "LethalFragGrenade",
-        "projectPath": "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\LethalFragGrenade.csproj",
+        "projectPath": "C:\\Users\\bmore\\Documents\\LCFragGrenade\\LethalFragGrenade.csproj",
         "packagesPath": "C:\\Users\\bmore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\obj\\",
+        "outputPath": "C:\\Users\\bmore\\Documents\\LCFragGrenade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\NuGet.Config",
+          "C:\\Users\\bmore\\Documents\\LCFragGrenade\\NuGet.Config",
           "C:\\Users\\bmore\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [

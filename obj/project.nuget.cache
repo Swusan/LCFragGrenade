@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f09WvPohtq0YAAp4EtbpGItjY0bWZAoyr+7BZ3CFjPuWLGGUCtiFk1zQXhdVHWcj3DS5p6uUBysHYAgCqBRjvw==",
+  "dgSpecHash": "ea3jdoN+/qmBMOZC448jfN60vCXz5bJGllQ2Mp2qQWtU3aE33WmEB7LyC6EILqZHHqxo0JUFMGY1asOjksdeVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bmore\\Documents\\LethalFragGrenade\\LethalFragGrenade.csproj",
+  "projectFilePath": "C:\\Users\\bmore\\Documents\\LCFragGrenade\\LethalFragGrenade.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bmore\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
     "C:\\Users\\bmore\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",

@@ -32,6 +32,7 @@ public class FragGrenade : GrabbableObject
     public override void ItemActivate(bool used, bool buttonDown = true) 
     {
         base.ItemActivate(used, buttonDown);
+        Plugin.TheLogger.LogInfo("Grenade Activated");
         playerThrownBy = playerHeldBy;
         if (base.IsOwner)
         {

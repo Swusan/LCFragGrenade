@@ -14,7 +14,7 @@ namespace LethalFragGrenade
         private void Awake()
         {
             TheLogger = Logger;
-            // Keyframes
+            // Keyfram
             Keyframe[] ks = new Keyframe[2];
             ks[0] = new Keyframe(0, 0);
             ks[1] = new Keyframe(1, 1);
