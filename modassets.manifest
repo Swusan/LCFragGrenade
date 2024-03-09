@@ -3,13 +3,13 @@ CRC: 913070624
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ea33f833f779a12bb6c4feeee997a8eb
+    Hash: a48231fc82528dbdb5e8ccbd3b7151fc
   TypeTreeHash:
     serializedVersion: 2
     Hash: ce727092ada8115339e0b60e7dc03448
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: ea33f833f779a12bb6c4feeee997a8eb
+    Hash: a48231fc82528dbdb5e8ccbd3b7151fc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -55,4 +55,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/main.unity
-Dependencies: []
+Dependencies:
+- C:/Users/bmore/Documents/LCFragGrenade/grenadeassetbundle

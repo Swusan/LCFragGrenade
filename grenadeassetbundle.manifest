@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2750544712
+CRC: 829022188
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 641b8afab9c9b3bbd3bc3fb5508a7cfe
+    Hash: 898fea0a5a4482891427c9ffbe8c540d
   TypeTreeHash:
     serializedVersion: 2
     Hash: bb1b56521a66758535ea72e2e6de6784
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 641b8afab9c9b3bbd3bc3fb5508a7cfe
+    Hash: 898fea0a5a4482891427c9ffbe8c540d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -53,4 +53,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/GrenadeItem.asset
+- Assets/Sphere.prefab
 Dependencies: []

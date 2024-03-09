@@ -1,10 +1,11 @@
 ManifestFileVersion: 0
-CRC: 2681852182
+CRC: 3647562299
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: modassets
-      Dependencies: {}
+      Dependencies:
+        Dependency_0: grenadeassetbundle
     Info_1:
       Name: grenadeassetbundle
       Dependencies: {}

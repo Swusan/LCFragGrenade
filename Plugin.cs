@@ -1,10 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Logging;
 using LethalLib.Modules;
+using Unity.Netcode;
 using Unity.Netcode.Components;
 using Unity.Netcode.Samples;
 using UnityEngine;
+using NetworkPrefabs = LethalLib.Modules.NetworkPrefabs;
 
 namespace LethalFragGrenade
 {
@@ -13,10 +17,8 @@ namespace LethalFragGrenade
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource TheLogger;
-        public static Plugin instance;
         private void Awake()
         {
-            instance = this;
             TheLogger = Logger;
             // Keyframe
             Keyframe[] ks = new Keyframe[2];
@@ -25,12 +27,14 @@ namespace LethalFragGrenade
             // No longer Keyframes
             // Plugin startup logic
             string modPath = Path.GetDirectoryName(Info.Location);
-            AssetBundle bundle = AssetBundle.LoadFromFile(Path.Combine(modPath, "grenadeassetbundle"));
+            AssetBundle bundle = AssetBundle.LoadFromFile(Path.Combine(modPath, "grenadeassetbundle")); 
             Logger.LogInfo("Asset Bundle Loaded");
             Item grenade = bundle.LoadAsset<Item>("GrenadeItem");
+            GameObject grenadeObject = bundle.LoadAsset<GameObject>("Sphere");
+            Utilities.FixMixerGroups(grenadeObject);
             Logger.LogInfo("Item Loaded");
             
-            var fg = grenade.spawnPrefab.AddComponent<FragGrenade>();
+            var fg = grenadeObject.AddComponent<FragGrenade>();
             fg.itemProperties = grenade;
             fg.grabbable = true;
             fg.grabbableToEnemies = false;
@@ -38,14 +42,31 @@ namespace LethalFragGrenade
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks);
             fg.grenadeVerticalFallCurveNoBounce = new AnimationCurve(ks);
             
-            NetworkPrefabs.RegisterNetworkPrefab(grenade.spawnPrefab);
-            TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
+            InitializeNetworkBehaviours();
+            NetworkPrefabs.RegisterNetworkPrefab(grenadeObject);
             
+            Logger.LogInfo(fg.GetComponent<NetworkObject>());
             Logger.LogInfo("Prefab Prefabed");
-            Items.RegisterShopItem(grenade, (TerminalNode)null, (TerminalNode)null, node, 100);
+            Items.RegisterShopItem(grenade,100);
             Logger.LogInfo("Shop Shopped");
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             
         }
+        private static void InitializeNetworkBehaviours() {
+            // See https://github.com/EvaisaDev/UnityNetcodePatcher?tab=readme-ov-file#preparing-mods-for-patching
+            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+            foreach (Type type in types)
+            {
+                MethodInfo[] methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+                foreach (MethodInfo method in methods)
+                {
+                    var attributes = method.GetCustomAttributes(typeof(RuntimeInitializeOnLoadMethodAttribute), false);
+                    if (attributes.Length > 0)
+                    {
+                        method.Invoke(null, null);
+                    }
+                }
+            }
+        } 
     }
 }
