@@ -4,10 +4,7 @@
 
 Still Need to Do:
 - RPC Stuff
-- Grenade PNG
 - Smoother and Faster Travel Animation
-- Sound Design
-
 Might Do:
 - Pin Pull Animation
 - Throw Animation (Stun Grenade doesn't have one so I might not bother)
