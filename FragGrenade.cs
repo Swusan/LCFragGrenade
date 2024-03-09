@@ -21,7 +21,7 @@ public class FragGrenade : GrabbableObject
     public AnimationCurve grenadeFallCurve;
     public AnimationCurve grenadeVerticalFallCurveNoBounce;
     public AnimationCurve grenadeVerticalFallCurve;
-
+    
     public override void ItemActivate(bool used, bool buttonDown = true)
     {
         base.ItemActivate(used, buttonDown);
