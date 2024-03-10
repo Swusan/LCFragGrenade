@@ -1,9 +1,33 @@
 # LCFragGrenade
- Implements Frag Grenade for Lethal Company
- Functional but not complete
+ Implements Frag Grenade for Lethal Company  
+ Like the stun grenade except it explodes.
 
-Still Need to Do:
-- Implement Ear Ringing
-Might Do:
-- Pin Pull Animation
+### Config Options
+
+- None right now
+
+### Planned Features
+
+- Pin Pull Animation (Maybe)
 - Throw Animation (Stun Grenade doesn't have one so I might not bother)
+
+### Issues & Suggestions
+
+Please put any issues or suggestions on the [github](https://github.com/Swusan/LCFragGrenade/issues).  
+Also, feel free to contribute!
+
+#### Known Issues
+
+- None
+
+#### Credits
+
+Development
+- Swusan
+
+Testing & Emotional Support
+- Antonio
+- gisforGravity
+
+Special Credit
+- Finnerex (He did a lot, what a guy)

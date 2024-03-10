@@ -10,7 +10,6 @@ namespace LethalFragGrenade;
 
 public class FragGrenade : GrabbableObject
 { 
-// public bool pinPulled;
     public bool hasExploded;
     public bool DestroyGrenade;
     private PlayerControllerB playerThrownBy;

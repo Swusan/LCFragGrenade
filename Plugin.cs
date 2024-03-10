@@ -47,7 +47,6 @@ namespace LethalFragGrenade
             var grenadeObject = bundle.LoadAsset<GameObject>("Sphere");
             Utilities.FixMixerGroups(grenadeObject);
             Logger.LogInfo("Item Loaded");
-            Logger.LogInfo("Animation Curves Curved");
             var fg = grenadeObject.AddComponent<FragGrenade>();
             fg.itemProperties = grenade;
             fg.grabbable = true;
@@ -60,6 +59,7 @@ namespace LethalFragGrenade
             fg.grenadeFallCurve = new AnimationCurve(ks1);
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks2);
             fg.grenadeVerticalFallCurveNoBounce = new AnimationCurve(ks3);
+            Logger.LogInfo("Animation Curves Curved");
             InitializeNetworkBehaviours();
             NetworkPrefabs.RegisterNetworkPrefab(grenadeObject);
             
