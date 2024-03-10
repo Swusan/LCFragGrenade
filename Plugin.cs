@@ -52,9 +52,9 @@ namespace LethalFragGrenade
             fg.grabbable = true;
             fg.grabbableToEnemies = false;
 
-            var ringing = bundle.LoadAsset<AudioClip>("237. Ears Ringing");
-            fg.itemAudio = fg.GetComponent<AudioSource>();
-            fg.ringingSound = ringing;
+            // var ringing = bundle.LoadAsset<AudioClip>("237. Ears Ringing");
+            // fg.itemAudio = fg.GetComponent<AudioSource>();
+            // fg.ringingSound = ringing;
             
             fg.grenadeFallCurve = new AnimationCurve(ks1);
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks2);
