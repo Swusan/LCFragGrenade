@@ -3,7 +3,8 @@
  Functional but not complete
 
 Still Need to Do:
-- Smoother and Faster Travel Animation
+- Make Sound distance work
+- Implement Ear Ringing
 Might Do:
 - Pin Pull Animation
 - Throw Animation (Stun Grenade doesn't have one so I might not bother)
