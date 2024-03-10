@@ -90,7 +90,7 @@ public class FragGrenade : GrabbableObject
                 new Vector3(transform.localPosition.x, targetFloorPosition.y, transform.localPosition.z),
                 grenadeVerticalFallCurve.Evaluate(fallTime));
         }
-
+        
         fallTime += Mathf.Abs(Time.deltaTime * 12f / magnitude);
     }
 
