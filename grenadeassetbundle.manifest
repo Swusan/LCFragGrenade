@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 226418854
+CRC: 955066752
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 86c808ccd7cfa588adff4fd76e85138e
+    Hash: 0aeae34975101ffa1b4c9b2379aed3ec
   TypeTreeHash:
     serializedVersion: 2
     Hash: 84b5945ae7a6f4228819f22dd1da5fae
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 86c808ccd7cfa588adff4fd76e85138e
+    Hash: 0aeae34975101ffa1b4c9b2379aed3ec
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -47,5 +47,6 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/GrenadeItem.asset
+- Assets/237. Ears Ringing.mp3
 - Assets/Sphere.prefab
 Dependencies: []

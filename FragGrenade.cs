@@ -21,6 +21,8 @@ public class FragGrenade : GrabbableObject
     public AnimationCurve grenadeFallCurve;
     public AnimationCurve grenadeVerticalFallCurveNoBounce;
     public AnimationCurve grenadeVerticalFallCurve;
+    public AudioSource itemAudio;
+    public AudioClip ringingSound;
     
     public override void ItemActivate(bool used, bool buttonDown = true)
     {
@@ -104,6 +106,7 @@ public class FragGrenade : GrabbableObject
 
         hasExploded = true;
         ExplodeServerRpc(transform.position, 100f, 110f);
+        PlayRingingServerRpc();
         DestroyGrenade = true;
         if (DestroyGrenade)
         {
@@ -153,6 +156,18 @@ public class FragGrenade : GrabbableObject
     public void ExplodeServerRpc(Vector3 pos, float kR, float dR)
     {
         ExplodeClientRpc(pos, kR, dR);
+    }
+
+    [ClientRpc]
+    public void PlayRingingClientRpc()
+    {
+        playerThrownBy.itemAudio.PlayOneShot(ringingSound);
+    }
+    
+    [ServerRpc]
+    public void PlayRingingServerRpc()
+    {
+        PlayRingingClientRpc();
     }
 
 }

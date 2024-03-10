@@ -3,7 +3,6 @@
  Functional but not complete
 
 Still Need to Do:
-- Make Sound distance work
 - Implement Ear Ringing
 Might Do:
 - Pin Pull Animation

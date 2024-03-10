@@ -19,7 +19,6 @@ namespace LethalFragGrenade
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource TheLogger;
-        private Harmony _harmony = new Harmony(PluginInfo.PLUGIN_GUID);
         private void Awake()
         {
             Keyframe[] ks1 = new Keyframe[2];
@@ -41,11 +40,11 @@ namespace LethalFragGrenade
             
             TheLogger = Logger;
             // Plugin startup logic
-            string modPath = Path.GetDirectoryName(Info.Location);
-            AssetBundle bundle = AssetBundle.LoadFromFile(Path.Combine(modPath, "grenadeassetbundle")); 
+            var modPath = Path.GetDirectoryName(Info.Location);
+            var bundle = AssetBundle.LoadFromFile(Path.Combine(modPath, "grenadeassetbundle")); 
             Logger.LogInfo("Asset Bundle Loaded");
-            Item grenade = bundle.LoadAsset<Item>("GrenadeItem");
-            GameObject grenadeObject = bundle.LoadAsset<GameObject>("Sphere");
+            var grenade = bundle.LoadAsset<Item>("GrenadeItem");
+            var grenadeObject = bundle.LoadAsset<GameObject>("Sphere");
             Utilities.FixMixerGroups(grenadeObject);
             Logger.LogInfo("Item Loaded");
             Logger.LogInfo("Animation Curves Curved");
@@ -53,6 +52,10 @@ namespace LethalFragGrenade
             fg.itemProperties = grenade;
             fg.grabbable = true;
             fg.grabbableToEnemies = false;
+
+            var ringing = bundle.LoadAsset<AudioClip>("237. Ears Ringing");
+            fg.itemAudio = fg.GetComponent<AudioSource>();
+            fg.ringingSound = ringing;
             
             fg.grenadeFallCurve = new AnimationCurve(ks1);
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks2);
