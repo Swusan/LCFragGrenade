@@ -14,7 +14,7 @@ using NetworkPrefabs = LethalLib.Modules.NetworkPrefabs;
 
 namespace LethalFragGrenade
 {
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin("Swusan.LethalFragGrenade", "LethalFragGrenade", "1.1.0")]
     [BepInDependency(LethalLib.Plugin.ModGUID)] 
     public class Plugin : BaseUnityPlugin
     {
@@ -42,11 +42,9 @@ namespace LethalFragGrenade
             // Plugin startup logic
             var modPath = Path.GetDirectoryName(Info.Location);
             var bundle = AssetBundle.LoadFromFile(Path.Combine(modPath, "grenadeassetbundle")); 
-            Logger.LogInfo("Asset Bundle Loaded");
             var grenade = bundle.LoadAsset<Item>("GrenadeItem");
             var grenadeObject = bundle.LoadAsset<GameObject>("Sphere");
             Utilities.FixMixerGroups(grenadeObject);
-            Logger.LogInfo("Item Loaded");
             var fg = grenadeObject.AddComponent<FragGrenade>();
             fg.itemProperties = grenade;
             fg.grabbable = true;
@@ -59,15 +57,9 @@ namespace LethalFragGrenade
             fg.grenadeFallCurve = new AnimationCurve(ks1);
             fg.grenadeVerticalFallCurve = new AnimationCurve(ks2);
             fg.grenadeVerticalFallCurveNoBounce = new AnimationCurve(ks3);
-            Logger.LogInfo("Animation Curves Curved");
             InitializeNetworkBehaviours();
             NetworkPrefabs.RegisterNetworkPrefab(grenadeObject);
-            
-            Logger.LogInfo(fg.GetComponent<NetworkObject>());
-            Logger.LogInfo("Prefab Prefabed");
             Items.RegisterShopItem(grenade,100);
-            Logger.LogInfo("Shop Shopped");
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             
         }
         private static void InitializeNetworkBehaviours() {

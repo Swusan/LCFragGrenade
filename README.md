@@ -9,6 +9,7 @@
 ### Planned Features
 
 - Pin Pull Animation (Maybe)
+- Explode invokes Ears Ringing
 - Throw Animation (Stun Grenade doesn't have one so I might not bother)
 
 ### Issues & Suggestions
